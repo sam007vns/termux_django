@@ -100,16 +100,23 @@ else{
 <form class="form-group" method="POST" action="{% url 'home' %}">
   {% csrf_token %}
 <label for="customRange2" class="form-label">Brightness</label>
-<input type="range" class="form-range" min="0" max="255" id="customRange2">
+<input type="range" class="form-range" min="0" max="255" id="customRange2" name="bright">
 <button type="submit" class="btn btn-success" name="setBright" value="True">Change Brightness</button>
 </form>
 <form class="form-group" method="POST" action="{% url 'home' %}">
   {% csrf_token %}
 <label for="customRange2" class="form-label">Vibrate</label>
-<input type="text" id="vibs" name="vib" placeholder="Time in ms" required>
+<input type="text" id="vibs" name="duration" placeholder="Time in ms" required>
 <button type="submit" class="btn btn-success" name="vibrate" value="True">Vibrate Now!</button>
 </form>
-{% if torch == "False" %}<a href="{% url 'torch' 'True' %}" class="btn btn-success">Torch ON</a>{% else %}<a href="{% url 'torch' 'False' %}" class="btn btn-success">Torch OFF</a>{% endif %}
+<form class="form-group" method="POST" action="{% url 'home' %}">
+  {% csrf_token %}
+<label for="customRange2" class="form-label">Phone call</label>
+<input type="text" id="phn" name="number" placeholder="Phone Number" required>
+<button type="submit" class="btn btn-success" name="telephone" value="True">Start Call!</button>
+</form>
+<a href="{% url 'torch' 'True' %}" class="btn btn-success">Torch ON</a>
+<a href="{% url 'torch' 'False' %}" class="btn btn-success">Torch OFF</a>
   </div>
 
 </div>
