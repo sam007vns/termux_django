@@ -19,6 +19,7 @@ from urllib.parse import quote
 from django.http import FileResponse
 from django.utils.crypto import get_random_string
 from pimux import function
+import ast
 
 @login_required(login_url='login')
 def home(request):
@@ -49,7 +50,7 @@ def home(request):
 			messages.add_message(request,messages.SUCCESS,"volume chnaged successfuly")
 		else:
 			messages.add_message(request,messages.WARNING,"Please enter a number between 0 to 10")
-	battery=x.battery()
+	battery=ast.literal_eval(x.battery())
 	return render(request,"home.html",{"battery":battery})
 @login_required(login_url='login')
 def torch(request,value):
