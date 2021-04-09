@@ -66,7 +66,7 @@
 <div class="card">
   <h5 class="card-header alert alert-primary font-weight-bold">Audio Recordings</h5>
   <div class="card-body">
-    {% for x in data %}
+    {% for x in data %}<a href="{{ x.audio.url }}">{{x.date_time}}</a>
     <audio src="{{ x.audio.url }}">{{x.date_time}}</audio><br>
     {% endfor %}
 
