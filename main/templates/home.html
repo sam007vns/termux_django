@@ -80,11 +80,8 @@ else{
 <div class="card">
   <h5 class="card-header alert alert-primary font-weight-bold">Operations</h5>
   <div class="card-body">
-    <p class="card-text">Battery: Health:{{battery.health}},Percentage:{{battery.percentage}}%,Plugged:{{battery.plugged}},Status:{{battery.status}},Temperature:{{battery.temperature}} C</p>
+    <p class="card-text">Battery: {{battery}}</p>
     <ul>
-{% for key, value in battery.items %}
-    <li><p class="card-text">{{key}}:{{value}}</p></li>
-{% endfor %}
     </ul>
     <a class="btn btn-success btn-sm"onclick="whichCamera()">Capture Photo</a>
      <div class="form-check">
