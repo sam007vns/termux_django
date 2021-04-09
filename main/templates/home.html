@@ -80,7 +80,7 @@ else{
 <div class="card">
   <h5 class="card-header alert alert-primary font-weight-bold">Operations</h5>
   <div class="card-body">
-    <p class="card-text">Battery: {{battery}}%</p>
+    <p class="card-text">Battery: Health:{{battery.health}},Percentage:{{battery.percentage}}%,Plugged:{{battery.plugged}},Status:{{battery.status}},Temperature:{{battery.temperature}} C</p>
     <a class="btn btn-success btn-sm"onclick="whichCamera()">Capture Photo</a>
      <div class="form-check">
   <input class="form-check-input" type="radio" name="cam" id="cam1" value="front"  required checked>
@@ -103,7 +103,7 @@ else{
 <form class="form-group" method="POST" action="{% url 'home' %}">
   {% csrf_token %}
 <label for="customRange3" class="form-label">Volume</label>
-<input type="range" class="form-range" min="0" max="5" id="customRange3" name="volume">
+<input type="range" class="form-range" min="0" max="15" id="customRange3" name="volume">
 <button type="submit" class="btn btn-success btn-sm" name="setVolume" value="True">Change Volume</button>
 </form>
 <form class="form-group" method="POST" action="{% url 'home' %}">
