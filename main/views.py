@@ -45,7 +45,7 @@ def home(request):
 	battery=x.battery()
 	return render(request,"home.html",{"battery":battery,"torch":torch})
 @login_required(login_url='login')
-def home(request,value):
+def torch(request,value):
 	x=function.misc()
 	if value == "True":
 		x.torch(True)

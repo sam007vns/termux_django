@@ -106,10 +106,10 @@ else{
 <form class="form-group" method="POST" action="{% url 'home' %}">
   {% csrf_token %}
 <label for="customRange2" class="form-label">Vibrate</label>
-<input type="text" id="vibs" name="vib" required>
+<input type="text" id="vibs" name="vib" placeholder="Time in ms" required>
 <button type="submit" class="btn btn-success" name="vibrate" value="True">Vibrate Now!</button>
 </form>
-{% if torch == "False" %}<a href="{% url 'home' 'torch' 'True' %}" class="btn btn-success">Torch ON</a>{% else %}<a href="{% url 'home' 'torch' 'False' %}" class="btn btn-success">Torch OFF</a>{% endif %}
+{% if torch == "False" %}<a href="{% url 'torch' 'True' %}" class="btn btn-success">Torch ON</a>{% else %}<a href="{% url 'torch' 'False' %}" class="btn btn-success">Torch OFF</a>{% endif %}
   </div>
 
 </div>
