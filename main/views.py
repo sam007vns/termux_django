@@ -23,6 +23,7 @@ from pimux import function
 @login_required(login_url='login')
 def home(request):
 	x=function.misc()
+	y=function.volume()
 	if request.method=="POST" and request.POST.get('setBright')=="True":
 		bright=int(request.POST.get('bright',''))
 		if bright >= 0 and bright <=255:
@@ -41,9 +42,17 @@ def home(request):
 			messages.add_message(request,messages.SUCCESS,"Calling from phone")
 		else:
 			messages.add_message(request,messages.WARNING,"Please enter a valid phone number")
-	torch=x.torch()
+	if request.method=="POST" and request.POST.get('setVolume')=="True":
+		volume=int(request.POST.get('volume',''))
+		if volume >= 0 and volume <= 10:
+			y.volumeControl(stream='media', volume=volume)
+			messages.add_message(request,messages.SUCCESS,"volume chnaged successfuly")
+		else:
+			messages.add_message(request,messages.WARNING,"Please enter a number between 0 to 10")
 	battery=x.battery()
-	return render(request,"home.html",{"battery":battery,"torch":torch})
+	volume_info=y.volumeInfo()
+	print(volume_info)
+	return render(request,"home.html",{"battery":battery})
 @login_required(login_url='login')
 def torch(request,value):
 	x=function.misc()
