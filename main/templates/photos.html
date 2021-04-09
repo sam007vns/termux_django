@@ -39,15 +39,13 @@
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
-  <li class="nav-item">
-        <a class="nav-link" href="{% url 'photos' %}">Photos</a>
-      </li>
+
       {% if request.user.is_authenticated %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        <a class="nav-link" href="">Logout</a>
       </li>
       {% endif %}
       <!-- Dropdown -->
@@ -63,14 +61,12 @@
 
 <br>
 <div class="card">
-  <h5 class="card-header alert alert-primary font-weight-bold">Operations</h5>
+  <h5 class="card-header alert alert-primary font-weight-bold">Photos</h5>
   <div class="card-body">
-    <a href="{% url 'click_photo' %}">
-    <span style="color: Dodgerblue;">
-      <i class="fas fa-camera fa-3x"></i>
-    </span>
-  </a>
-     
+    {% for x in data %}
+    <a href="{{x.photo_name.url}}">{{x.photo_name}}</a>
+    {% endfor %}
+
   </div>
 </div>
 {% endblock content %}

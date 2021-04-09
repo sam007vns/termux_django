@@ -1,0 +1,79 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}Termux-Django Login{% endblock title %}
+{% block style %}
+.card{
+	margin:5px;
+	padding:10px;
+
+}
+.footer{
+	
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+
+}
+{% endblock style %}
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark primary-color sticky-top">
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="#">Termux-Djngo{% if request.user.is_authenticated %} Administrator    {% endif %}</a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
+      </li>
+      {% endif %}
+
+    </ul>
+    <!-- Links -->
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+{% endblock nav %}
+{% block content %}
+<center><h2 class="card-text">Login</h2></center>
+<hr width="50%">
+  <div class="messages">
+{% for msg in messages %}
+
+<div class="alert alert-{{msg.level_tag}}" role="alert">
+{{msg.message}}
+</div>
+
+{%  endfor  %}
+</div>
+<form method="POST" action="{% url 'login' %}">
+	{% csrf_token %}
+	<div class="card">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Username</label>
+    <input type="text" class="form-control" id="exampleInputEmail1"  placeholder="Enter Username" name="username" required>
+    <small id="emailHelp" class="form-text text-muted"></small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</form>
+{% endblock content %}
+{% block footer %}
+
+{% endblock footer %}
