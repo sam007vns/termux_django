@@ -5,9 +5,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('',views.login,name="login"),
-    path('click_photo',views.click_photo,name="click_photo"),
+    path('click_photo/<str:cam_type>',views.click_photo,name="click_photo"),
     path('photos',views.photos,name="photos"),
     path('home',views.home,name="home"),
+    path('home/torch/<str:value>',views.home,name="home"),
     path('logout',views.logout,name="logout"),
 ]
 

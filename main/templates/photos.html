@@ -64,7 +64,7 @@
   <h5 class="card-header alert alert-primary font-weight-bold">Photos</h5>
   <div class="card-body">
     {% for x in data %}
-    <a href="{{x.photo_name.url}}">{{x.photo_name}}</a>
+    <a href="{{x.photo_name.url}}">{{x.date_time}}</a><br>
     {% endfor %}
 
   </div>

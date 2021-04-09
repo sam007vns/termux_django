@@ -26,7 +26,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark primary-color sticky-top">
 
   <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">Termux-Django{% if request.user.is_authenticated %} Administrator   {% endif %}</a>
+  <a class="navbar-brand" href="{% url 'home' %}">Termux-Django{% if request.user.is_authenticated %} Administrator   {% endif %}</a>
 
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -39,12 +39,9 @@
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
-  <li class="nav-item">
-        <a class="nav-link" href="{% url 'photos' %}">Photos</a>
-      </li>
       {% if request.user.is_authenticated %}
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
+        <a class="nav-link" href="{% url 'photos' %}">Photos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -60,18 +57,61 @@
 </nav>
 {% endblock nav %}
 {% block content %}
+<div class="messages">
+{% for msg in messages %}
 
+<div class="alert alert-{{msg.level_tag}}" role="alert">
+{{msg.message}}
+</div>
+
+{%  endfor  %}
+</div>
 <br>
+<script type="text/javascript">
+function whichCamera(){
+if(document.getElementById('cam1').checked){
+  window.location.href="{% url 'click_photo' 'front' %}"
+}
+else{
+  window.location.href="{% url 'click_photo' 'rear' %}"
+}
+}
+  </script>
 <div class="card">
   <h5 class="card-header alert alert-primary font-weight-bold">Operations</h5>
   <div class="card-body">
-    <a href="{% url 'click_photo' %}">
+    <a onclick="whichCamera()">
     <span style="color: Dodgerblue;">
       <i class="fas fa-camera fa-3x"></i>
     </span>
   </a>
-     
+     <div class="form-check">
+  <input class="form-check-input" type="radio" name="cam" id="cam1" value="front"  required checked>
+  <label class="form-check-label" for="cam1">
+    Front
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="cam" id="cam2" value="rear">
+  <label class="form-check-label" for="cam2">
+    Rear
+  </label>
+</div>
+<form class="form-group" method="POST" action="{% url 'home' %}">
+  {% csrf_token %}
+<label for="customRange2" class="form-label">Brightness</label>
+<input type="range" class="form-range" min="0" max="255" id="customRange2">
+<button type="submit" class="btn btn-success" name="setBright" value="True">Change Brightness</button>
+</form>
+<form class="form-group" method="POST" action="{% url 'home' %}">
+  {% csrf_token %}
+<label for="customRange2" class="form-label">Vibrate</label>
+<input type="text" id="vibs" name="vib" required>
+<button type="submit" class="btn btn-success" name="vibrate" value="True">Vibrate Now!</button>
+</form>
+{% if torch == "False" %}<a href="{% url 'home' 'torch' 'True' %}" class="btn btn-success">Torch ON</a>{% else %}<a href="{% url 'home' 'torch' 'False' %}" class="btn btn-success">Torch OFF</a>{% endif %}
   </div>
+
 </div>
 {% endblock content %}
 {% block footer %}
