@@ -23,18 +23,18 @@ from pimux import function
 @login_required(login_url='login')
 def home(request):
 	x=function.misc()
-	if request.method="POST" and request.POST.get('setBright')=="True":
+	if request.method=="POST" and request.POST.get('setBright')=="True":
 		bright=int(request.POST.get('bright',''))
 		if bright >= 0 and bright <=255:
 			x.brightness(bright)
 			messages.add_message(request,messages.SUCCESS,"Brightness changed successfuly!")
 		else:
 			messages.add_message(request,messages.WARNING,"Please enter a value betweeen 0 and 255")
-	if request.method="POST" and request.POST.get('vibrate')=="True":
+	if request.method=="POST" and request.POST.get('vibrate')=="True":
 		vib=int(request.POST.get('duration',''))
 		x.vibrate(vib)
 		messages.add_message(request,messages.SUCCESS,"Phone Vibrated!")
-	if request.method="POST" and request.POST.get('telephone')=="True":
+	if request.method=="POST" and request.POST.get('telephone')=="True":
 		phone=request.POST.get('number','')
 		if len(phone) == 10:
 			x.telephonycall(phone)
@@ -43,7 +43,7 @@ def home(request):
 			messages.add_message(request,messages.WARNING,"Please enter a valid phone number")
 	torch=x.torch()
 	battery=x.battery()
-	return render(request,"home.html"{"battery":battery,"torch":torch})
+	return render(request,"home.html",{"battery":battery,"torch":torch})
 @login_required(login_url='login')
 def home(request,value):
 	x=function.misc()
