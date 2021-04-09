@@ -11,7 +11,7 @@ urlpatterns = [
     path('torch/<str:value>',views.torch,name="torch"),
     path('logout',views.logout,name="logout"),
     path('location',views.get_location,name="location"),
-    path('record_audio',views.record_audio_now,name="record_audio_now"),
+    path('record_audio_now',views.record_audio_now,name="record_audio_now"),
     path('recordings',views.view_audio_records,name="recordings"),
 ]
 

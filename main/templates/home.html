@@ -123,7 +123,7 @@ else{
 <input type="text" id="phn" name="number" placeholder="Phone Number" required>
 <button type="submit" class="btn btn-success btn-sm" name="telephone" value="True">Start Call</button>
 </form>
-<form class="form-group" method="POST" action="{% url 'home' %}">
+<form class="form-group" method="POST" action="{% url 'record_audio_now' %}">
   {% csrf_token %}
 <label for="customRange2" class="form-label">Record Audio</label>
 <input type="text" id="sec" name="duration" placeholder="Time in seconds" required>
