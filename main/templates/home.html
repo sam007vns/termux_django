@@ -115,13 +115,20 @@ else{
   {% csrf_token %}
 <label for="customRange2" class="form-label">Vibrate</label>
 <input type="text" id="vibs" name="duration" placeholder="Time in ms" required>
-<button type="submit" class="btn btn-success btn-sm" name="vibrate" value="True">Vibrate Now!</button>
+<button type="submit" class="btn btn-success btn-sm" name="vibrate" value="True">Vibrate Now</button>
 </form>
 <form class="form-group" method="POST" action="{% url 'home' %}">
   {% csrf_token %}
 <label for="customRange2" class="form-label">Phone call</label>
 <input type="text" id="phn" name="number" placeholder="Phone Number" required>
-<button type="submit" class="btn btn-success btn-sm" name="telephone" value="True">Start Call!</button>
+<button type="submit" class="btn btn-success btn-sm" name="telephone" value="True">Start Call</button>
+</form>
+<form class="form-group" method="POST" action="{% url 'home' %}">
+  {% csrf_token %}
+<label for="customRange2" class="form-label">Record Audio</label>
+<input type="text" id="sec" name="duration" placeholder="Time in seconds" required>
+<button type="submit" class="btn btn-success btn-sm" name="audio" value="True">Start Recording
+</button>
 </form>
 <a href="{% url 'torch' 'True' %}" class="btn btn-success btn-sm">Torch ON</a>
 <a href="{% url 'torch' 'False' %}" class="btn btn-success btn-sm">Torch OFF</a>

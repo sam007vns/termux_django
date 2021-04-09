@@ -98,7 +98,25 @@ def login(request):
 			return render(request,"login.html")
 	else:
 		return render(request,"login.html")
-
+@login_required(login_url='login')
+def record_audio_now(request):
+	if request.method == "POST":
+		duration=request.POST.get('duration')
+		if not duration.isdigit() or not int(duration)>=1:
+			messages.add_message(request,messages.WARNING,"Duration must be greater than 1 sec.")
+			return redirect('home')
+		aud_file_name=get_random_string(length=16)+".mp3"
+		path_toSave = "~/termux_django/media/musics/"+aud_file_name
+		aud = scrip.compute(['termux-microphone-record','-d','-f',path_toSave,'-l',int(duration)])
+		save_aud=record_audio(audio="/musics/"+aud_file_name,time_sec=duration)
+		save_aud.save()
+		messages.add_message(request,messages.SUCCESS,"Audio recording saved successfuly!")
+		return redirect('home')
+	return redirect('home')
+@login_required(login_url='login')
+def view_audio_records(request):
+	audio=record_audio.objects.all()
+	return render(request,"view_audio_recording.html",{"data":audio})
 @login_required(login_url='login')
 def logout(request):
 	auth.logout(request)

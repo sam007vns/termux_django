@@ -17,3 +17,9 @@ class last_location(models.Model):
 	date_time=models.DateTimeField(auto_now_add=True)
 	def __str__(self):
 		return str(self.date_time)
+class record_audio(models.Model):
+	audio=models.FileField(upload_to='musics/')
+	time_sec=models.CharField(max_length=10)
+	date_time=models.DateTimeField(auto_now_add=True)
+	def __str__(self):
+		return str(self.date_time)
