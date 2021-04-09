@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}Termux-Django{% endblock title %}
+{% block style %}
+.row{
+
+}
+.card{
+	margin:10px;
+}
+.card-body{
+	display:inline-block;
+}
+.footer{
+
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+}
+.loc_img{
+  display:block;
+
+}
+{% endblock %}
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark primary-color sticky-top">
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="#">Termux-Django{% if request.user.is_authenticated %} Administrator   {% endif %}</a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+
+      {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
+      </li><li class="nav-item">
+        <a class="nav-link" href="{% url 'photos' %}">Photos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="">Logout</a>
+      </li>
+      {% endif %}
+      <!-- Dropdown -->
+
+    </ul>
+    <!-- Links -->
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+{% endblock nav %}
+{% block content %}
+
+<br>
+<div class="card">
+  <h5 class="card-header alert alert-primary font-weight-bold">Current Location -<a type="button" class="btn btn-success" href="https://www.google.com/maps/dir//+{{loc.latitude}}+,+{{loc.longitude}}">View on map</a></h5>
+  <div class="card-body">
+    <p class="card-text">Previous Locations</p>
+    {% for x in last %}
+    <a href="https://www.google.com/maps/dir//+{{x.latitude}}+,+{{x.longitude}}">{{x.date_time}}</a>
+    <br>
+    {% endfor %}
+
+  </div>
+</div>
+{% endblock content %}
+{% block footer %}
+
+
+{% endblock footer %}

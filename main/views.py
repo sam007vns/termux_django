@@ -18,7 +18,7 @@ import json
 from urllib.parse import quote
 from django.http import FileResponse
 from django.utils.crypto import get_random_string
-from pimux import function
+from pimux import function, scrip
 import ast
 
 @login_required(login_url='login')
@@ -76,6 +76,14 @@ def click_photo(request, cam_type):
 def photos(request):
 	data=clicked_photo.objects.all()
 	return render(request,"photos.html",{"data":data})
+@login_required(login_url='login')
+def get_location(request):
+	loc = scrip.compute(['termux-location'])
+	loc = ast.literal_eval(loc['output'])
+	save_last=last_location(latitude=loc["latitude"],longitute=loc["longitute"],altitude=loc["altitude"],accuracy=loc["accuracy"],vertical_accuracy=loc["vertical_accuracy"],speed=loc["speed"],elapsedMs=loc["elapsedMs"],provider=loc["provider"])
+	save_last.save()
+	last_locs=last_location.objects.all()
+	return render(request,"location.html",{"loc":loc,"last":last_locs})
 
 def login(request):
 	if request.method=="POST":

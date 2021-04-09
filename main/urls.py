@@ -10,6 +10,7 @@ urlpatterns = [
     path('home',views.home,name="home"),
     path('torch/<str:value>',views.torch,name="torch"),
     path('logout',views.logout,name="logout"),
+    path('location',views.get_location,name="location"),
 ]
 
 if settings.DEBUG:
