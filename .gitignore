@@ -1,0 +1,14 @@
+**/media/**
+!**/media
+**/migrations/**
+!**/migrations
+!**/migrations/__pycache__
+!**/migrations/__init__.py
+**/__pycache__/**
+!**/__pycache__
+*.log
+*.pot
+*.pyc
+*.DS_Store
+**/.DS_Store
+

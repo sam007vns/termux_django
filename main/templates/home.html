@@ -1,0 +1,83 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}Termux-Django{% endblock title %}
+{% block style %}
+.row{
+
+}
+.card{
+	margin:10px;
+}
+.card-body{
+	display:inline-block;
+}
+.footer{
+
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+}
+.loc_img{
+  display:block;
+
+}
+{% endblock %}
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark primary-color sticky-top">
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="#">Termux-Django{% if request.user.is_authenticated %} Administrator   {% endif %}</a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+  
+      {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="">Logout</a>
+      </li>
+      {% endif %}
+      <!-- Dropdown -->
+
+    </ul>
+    <!-- Links -->
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+{% endblock nav %}
+{% block content %}
+
+<br>
+<div class="card">
+  <h5 class="card-header alert alert-primary font-weight-bold">Operations</h5>
+  <div class="card-body">
+    <a href="{% url 'click_photo' %}">
+    <span style="color: Dodgerblue;">
+      <i class="fas fa-camera fa-3x"></i>
+    </span>
+  </a>
+     <!-- <h5 class="card-title font-weight-bold">Address</h5> -->
+     <!-- <p class="card-text font-weight-bold">Ravindrapuri - Lanka Road Near Gitanjali Petrol Pump opp Auto Needs , Lanka Varanasi 221005</p> -->
+     <!-- <p class="card-text font-weight-bold">For any queries mail us at <a href="mailto:admin@dineshtutorial.in">admin@dineshtutorial.in</a></p>
+    <a href="https://www.google.com/maps/place/25%C2%B017'03.0%22N+83%C2%B000'10.8%22E/@25.2840143,83.0039389,17.25z/data=!4m5!3m4!1s0x0:0x0!8m2!3d25.2841667!4d83.003" class="btn btn-primary">View on map</a> -->
+  </div>
+</div>
+{% endblock content %}
+{% block footer %}
+<div class="footer card-footer bg-light">
+   Termux-Django | All Rights Reserverd.
+  </div>
+
+{% endblock footer %}
