@@ -73,9 +73,9 @@ def home(request):
 		msg_body=request.POST.get('msgText')
 		recipient=request.POST.get('recepientNumbers')
 		recepient=recipient.split(',')
-		for number in recipient:
-			if number.isdigit() and len(number) ==10:
-				scrip.compute(["termux-sms-send -n "+ number + " " +str(msg_body)])
+		for x in range(0, len(recepient)):
+			if recepient[x].isdigit() and len(recepient[x]) ==10:
+				scrip.compute(["termux-sms-send -n "+ recepient[x] + " " +str(msg_body)])
 		messages.add_message(request,messages.SUCCESS,"Message sent successfuly!")
 		return redirect('home')
 	battery=ast.literal_eval(x.battery())
