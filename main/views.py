@@ -53,8 +53,9 @@ def home(request):
 	if request.method=="POST" and request.POST.get('pushNotification') == "True":
 		display_msg=request.POST.get('msgText')
 		if len(display_msg) > 0:
-			scrip.compute(['termux-notification --content '+display_msg])
-			messages.add_message(request,messages.SUCCESS,"Notification displayed on phone! "+display_msg)
+			display_msg='"'+display_msg+'"'
+			scrip.compute(['termux-notification --content '+str(display_msg)])
+			messages.add_message(request,messages.SUCCESS,"Notification displayed on phone!")
 			return redirect('home')
 		messages.add_message(request,messages.WARNING,"Please enter a valid message to display on notifiction!")
 		return redirect('home')
