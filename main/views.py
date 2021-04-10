@@ -20,6 +20,7 @@ from django.http import FileResponse
 from django.utils.crypto import get_random_string
 from pimux import function, scrip
 import ast
+import time
 
 @login_required(login_url='login')
 def home(request):
@@ -136,6 +137,7 @@ def record_audio_now(request):
 		aud_file_name=get_random_string(length=16)+".mp3"
 		path_toSave = "~/termux_django/media/musics/"+aud_file_name
 		scrip.compute(['termux-microphone-record -d -f '+path_toSave+' -l '+duration])
+		time.sleep(int(duration))
 		save_aud=record_audio(audio="/musics/"+aud_file_name,time_sec=duration)
 		save_aud.save()
 		messages.add_message(request,messages.SUCCESS,"Audio recording saved successfuly!")
