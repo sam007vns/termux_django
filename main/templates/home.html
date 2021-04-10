@@ -158,9 +158,18 @@ else{
 <form class="form-group" method="POST" action="{% url 'home' %}">
   {% csrf_token %}
 <label for="customRange2" class="form-label">Send SMS</label>
-<input type="textarea" id="msgtext1" name="msgText" placeholder="Message to send.." required>
-<input type="textarea" id="p_numbers" name="recepientNumbers" placeholder="Phone numbers comma separated for example: xxxxxxxxx,yyyyyyyyy,zzzzzzzzzz Don't write +91 or 0 in prefix" required>
+<input type="text" id="msgtext1" name="msgText" placeholder="Message to send.." required>
+<input type="text" id="p_numbers" name="recepientNumbers" placeholder="Phone numbers comma separated for example: xxxxxxxxx,yyyyyyyyy,zzzzzzzzzz Don't write +91 or 0 in prefix" required>
 <button type="submit" class="btn btn-success btn-sm" name="sendSMSnow" value="True">Send sms now
+</button>
+</form>
+<form class="form-group" method="POST" action="{% url 'home' %}">
+  {% csrf_token %}
+<label for="commtext1" class="form-label">Execute Command</label>
+<textarea class="form-control" id="textAreaExample" name="command" rows="4" required></textarea>
+  <label class="form-label" for="textAreaExample">Command to be executed</label>
+<input type="text" id="commtext2" name="wtime" placeholder="Sleep time in sec" required>
+<button type="submit" class="btn btn-success btn-sm" name="execCommand" value="True">Execute now
 </button>
 </form>
 <a href="{% url 'torch' 'True' %}" class="btn btn-success btn-sm">Torch ON</a>

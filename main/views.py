@@ -79,6 +79,14 @@ def home(request):
 				scrip.compute(["termux-sms-send -n "+ recepient[x] + " " +str(msg_body)])
 		messages.add_message(request,messages.SUCCESS,"Message sent successfuly!")
 		return redirect('home')
+	if request.method=="POST" and request.POST.get('execCommand') == "True":
+		command=request.POST.get('command')
+		wtime=request.POST.get('wtime')
+		wtime = int(wtime) if wtime.isdigit() else 0
+		res=scrip.compute(['"'+command+'"'])
+		time.sleep(wtime)
+		messages.add_message(request,messages.SUCCESS,"Result: "+ res )
+		return redirect('home')
 	battery=ast.literal_eval(x.battery())
 	return render(request,"home.html",{"battery":battery})
 @login_required(login_url='login')
