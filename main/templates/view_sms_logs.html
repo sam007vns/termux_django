@@ -80,22 +80,22 @@
   <thead class="thead-dark" >
     <tr>
       <th >#</th>
-      <th >Name</th>
-      <th >Phone</th>
       <th >Type</th>
+      <th >Read</th>
+      <th >Number</th>
       <th >Date</th>
-      <th >Duration</th>
+      <th >Body</th>
     </tr>
   </thead>
   <tbody>
     {% for x in data %}
     <tr>
       <th scope="row">#</th>
-      <td>{{x.name}}</td>
-      <td>{{x.phone_number}}</td>
       <td>{{x.type}}</td>
-      <td>{{x.date}}</td>
-      <td>{{x.duration}}</td>
+      <td>{{x.read}}</td>
+      <td>{{x.number}}</td>
+      <td>{{x.received}}</td>
+      <td>{{x.body}}</td>
     </tr>
     {% endfor %}
   </tbody>
