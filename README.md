@@ -4,6 +4,40 @@ Its a Django application developed to run on Turmux, using this application you 
 Note - If you try to run this on your PC, you will get lots of invalid syntex, errors ... thats not error's. This application is designed only for Turmux and will
 run very smoothly in it.
 
+Features:
+
+1.Capture Photo(both front and rear)
+
+2.Change brightness
+
+3.Change volume
+
+4.Vibrate phone
+
+5.Make phone call
+
+6.Record audio
+
+7.Display Notifications
+
+8.Display Toast Notification
+
+9.Send SMS
+
+10.Execute custom commands 
+
+11.Toggle Torch
+
+12.Get all call logs
+
+13.Get all sms logs
+
+14.Get current location using GPS
+
+15.Get all battry info
+
+
+
 How to install?
 
 1. You should be having Turmux and Turmux API application installed on your Android Device, you can download both of them from playstore.
@@ -47,4 +81,3 @@ Controlling Over The Network?
 
 ** THIS PROJECT IS ONLY MADE FOR EDUCATIONAL PURPOSES **
 
-I will be adding some more features like :- 1.sms messaging system 2. notification system, 3.Remote command execution, 4. File System Traversal and more...
