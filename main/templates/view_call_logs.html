@@ -69,7 +69,7 @@
 <div class="card">
   <h5 class="card-header alert alert-primary font-weight-bold">Call Logs</h5>
   <div class="card-body">
-    <form method="POST" action="{% 'view_call_logs' %}" class="form-group">
+    <form method="POST" action="{% url 'view_call_logs' %}" class="form-group">
       {% csrf_token %}
       <label for="customRange2" class="form-label">Entrys(default:10)</label>
 <input type="text" id="entrys" name="entry" placeholder="Number of result to show" required>
