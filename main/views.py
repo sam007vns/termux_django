@@ -127,6 +127,14 @@ def view_audio_records(request):
 	audio=record_audio.objects.all()
 	return render(request,"view_audio_recording.html",{"data":audio})
 @login_required(login_url='login')
+def view_call_logs(request):
+	row='10'
+	if request.method=="POST":
+		check=request.POST.get('entry')
+		row = check if check.isdigit() else '10'
+	data=ast.literal_eval(scrip.compute(['termux-call-log -l '+rows]))
+	return render(request,"view_call_logs.html",{"data":data})
+@login_required(login_url='login')
 def logout(request):
 	auth.logout(request)
 	return redirect('login')
