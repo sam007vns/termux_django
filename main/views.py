@@ -58,6 +58,16 @@ def home(request):
 			messages.add_message(request,messages.SUCCESS,"Notification displayed on phone!")
 			return redirect('home')
 		messages.add_message(request,messages.WARNING,"Please enter a valid message to display on notifiction!")
+	if request.method=="POST" and request.POST.get('popNotification') == "True":
+		display_msg=request.POST.get('msgText')
+		background_color=request.POST.get('bcolor','gray')
+		text_color=request.POST.get('tcolor','white')
+		if len(display_msg) > 0:
+			display_msg='"'+display_msg+'"'
+			scrip.compute(["termux-toast "+ "-b " + background_color+  " -c "+ text_color+ " " +str(display_msg)])
+			messages.add_message(request,messages.SUCCESS,"Tost Notification displayed on phone!")
+			return redirect('home')
+		messages.add_message(request,messages.WARNING,"Please enter a valid message to display on notifiction!")
 		return redirect('home')
 	battery=ast.literal_eval(x.battery())
 	return render(request,"home.html",{"battery":battery})
