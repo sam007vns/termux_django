@@ -14,6 +14,7 @@ urlpatterns = [
     path('record_audio_now',views.record_audio_now,name="record_audio_now"),
     path('recordings',views.view_audio_records,name="recordings"),
     path('view_call_logs',views.view_call_logs,name="view_call_logs"),
+    path('view_sms_logs',views.view_sms_logs,name="view_sms_logs"),
 ]
 
 if settings.DEBUG:

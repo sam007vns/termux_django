@@ -1,0 +1,109 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}Termux-Django{% endblock title %}
+{% block style %}
+.row{
+
+}
+.card{
+	margin:10px;
+}
+.card-body{
+	display:inline-block;
+}
+.footer{
+
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+}
+.loc_img{
+  display:block;
+
+}
+{% endblock %}
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark primary-color sticky-top">
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="#">Termux-Django{% if request.user.is_authenticated %} Administrator   {% endif %}</a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+
+      {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'location' %}">Location</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'recordings' %}">Recordings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="">Logout</a>
+      </li>
+      {% endif %}
+      <!-- Dropdown -->
+
+    </ul>
+    <!-- Links -->
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+{% endblock nav %}
+{% block content %}
+
+<br>
+<div class="card">
+  <h5 class="card-header alert alert-primary font-weight-bold">SMS Logs</h5>
+  <div class="card-body">
+    <form method="POST" action="{% url 'view_sms_logs' %}" class="form-group">
+      {% csrf_token %}
+      <label for="customRange2" class="form-label">Entrys(default:10)</label>
+<input type="text" id="entrys" name="entry" placeholder="Number of result to show" required>
+<button type="submit" class="btn btn-success btn-sm" name="entry_set" value="True">Show More
+</button>
+    </form>
+    <table class="table table-responsive table-striped table-bordered">
+  <thead class="thead-dark" >
+    <tr>
+      <th >#</th>
+      <th >Name</th>
+      <th >Phone</th>
+      <th >Type</th>
+      <th >Date</th>
+      <th >Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for x in data %}
+    <tr>
+      <th scope="row">#</th>
+      <td>{{x.name}}</td>
+      <td>{{x.phone_number}}</td>
+      <td>{{x.type}}</td>
+      <td>{{x.date}}</td>
+      <td>{{x.duration}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+  </div>
+</div>
+{% endblock content %}
+{% block footer %}
+
+
+{% endblock footer %}
