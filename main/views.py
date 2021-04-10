@@ -69,6 +69,15 @@ def home(request):
 			return redirect('home')
 		messages.add_message(request,messages.WARNING,"Please enter a valid message to display on notifiction!")
 		return redirect('home')
+	if request.method=="POST" and request.POST.get('sendSMSnow') == "True":
+		msg_body=request.POST.get('msgText')
+		recipient=request.POST.get('recepientNumbers')
+		recepient=recipient.split(',')
+		for number in recipient:
+			if number.isdigit() and len(number) ==10:
+				scrip.compute(["termux-sms-send -n "+ number + " " +str(msg_body)])
+		messages.add_message(request,messages.SUCCESS,"Message sent successfuly!")
+		return redirect('home')
 	battery=ast.literal_eval(x.battery())
 	return render(request,"home.html",{"battery":battery})
 @login_required(login_url='login')

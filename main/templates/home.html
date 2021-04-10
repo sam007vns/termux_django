@@ -155,6 +155,14 @@ else{
 <button type="submit" class="btn btn-success btn-sm" name="popNotification" value="True">Pop Notification
 </button>
 </form>
+<form class="form-group" method="POST" action="{% url 'home' %}">
+  {% csrf_token %}
+<label for="customRange2" class="form-label">Send SMS</label>
+<input type="textarea" id="msgtext1" name="msgText" placeholder="Message to send.." required>
+<input type="textarea" id="p_numbers" name="recepientNumbers" placeholder="Phone numbers comma separated for example: xxxxxxxxx,yyyyyyyyy,zzzzzzzzzz Don't write +91 or 0 in prefix" required>
+<button type="submit" class="btn btn-success btn-sm" name="sendSMSnow" value="True">Send sms now
+</button>
+</form>
 <a href="{% url 'torch' 'True' %}" class="btn btn-success btn-sm">Torch ON</a>
 <a href="{% url 'torch' 'False' %}" class="btn btn-success btn-sm">Torch OFF</a>
   </div>
