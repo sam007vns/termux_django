@@ -85,7 +85,7 @@ def home(request):
 		wtime = int(wtime) if wtime.isdigit() else 0
 		res=scrip.compute(['"'+command+'"'])
 		time.sleep(wtime)
-		messages.add_message(request,messages.SUCCESS,"Result: "+ res )
+		messages.add_message(request,messages.SUCCESS,"Result: "+ str(res) )
 		return redirect('home')
 	battery=ast.literal_eval(x.battery())
 	return render(request,"home.html",{"battery":battery})
