@@ -10,7 +10,6 @@ class last_location(models.Model):
 	longitude=models.CharField(max_length=20)
 	altitude=models.CharField(max_length=20)
 	accuracy=models.CharField(max_length=20)
-	vertical_accuracy=models.CharField(max_length=20)
 	speed=models.CharField(max_length=20)
 	elapsedMs=models.CharField(max_length=20)
 	provider=models.CharField(max_length=20)
