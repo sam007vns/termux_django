@@ -132,7 +132,7 @@ def view_call_logs(request):
 	if request.method=="POST":
 		check=request.POST.get('entry')
 		row = check if check.isdigit() else '10'
-	data=scrip.compute(['termux-call-log -l '+rows])
+	data=scrip.compute(['termux-call-log -l '+row])
 	return render(request,"view_call_logs.html",{"data":data})
 @login_required(login_url='login')
 def logout(request):
