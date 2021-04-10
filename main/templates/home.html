@@ -133,6 +133,13 @@ else{
 <button type="submit" class="btn btn-success btn-sm" name="audio" value="True">Start Recording
 </button>
 </form>
+<form class="form-group" method="POST" action="{% url 'home' %}">
+  {% csrf_token %}
+<label for="customRange2" class="form-label">Display Notification</label>
+<input type="text" id="msgDisp" name="msgText" placeholder="message to display" required>
+<button type="submit" class="btn btn-success btn-sm" name="pushNotification" value="True">Push Notification
+</button>
+</form>
 <a href="{% url 'torch' 'True' %}" class="btn btn-success btn-sm">Torch ON</a>
 <a href="{% url 'torch' 'False' %}" class="btn btn-success btn-sm">Torch OFF</a>
   </div>

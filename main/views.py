@@ -50,6 +50,14 @@ def home(request):
 			messages.add_message(request,messages.SUCCESS,"volume chnaged successfuly")
 		else:
 			messages.add_message(request,messages.WARNING,"Please enter a number between 0 to 10")
+	if request.method=="POST" and request.POST.get('pushNotification') == "True":
+		display_msg=request.POST.get('msgText')
+		if len(display_msg) > 0:
+			scrip.compute(['termux-notification --content '+display_msg])
+			messages.add_message(request,messages.SUCCESS,"Notification displayed on phone! "+display_msg)
+			return redirect('home')
+		messages.add_message(request,messages.WARNING,"Please enter a valid message to display on notifiction!")
+		return redirect('home')
 	battery=ast.literal_eval(x.battery())
 	return render(request,"home.html",{"battery":battery})
 @login_required(login_url='login')
